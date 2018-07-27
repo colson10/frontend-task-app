@@ -3,10 +3,11 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 // import Favicon from 'react-favicon';
 
-import AuthRedirect from '../auth-redirect';
-import Header from '../header';
-import Landing from '../landing';
-import Footer from '../footer';
+import AuthRedirect from '../auth-redirect/auth-redirect';
+import Header from '../header/header';
+import Landing from '../landing/landing';
+import Dashboard from '../dashboard/dashboard';
+import Footer from '../footer/footer';
 
 import ROUTES from '../../routes';
 import '../../style/main.scss';
@@ -26,6 +27,7 @@ export default class App extends Component {
           <Header/>
           <Route path='*' component={AuthRedirect}/>
           <Route exact path={ROUTES.LANDING} component={Landing}/>
+          <Route exact path='/dashboard' component={Dashboard}/>
           <Footer/>
         </div>
       </BrowserRouter>
