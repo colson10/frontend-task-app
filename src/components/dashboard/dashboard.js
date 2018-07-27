@@ -21,7 +21,7 @@ class Dashboard extends React.Component {
   render() {
     return (
       <div className='dashboard'>
-        <h3>Hello, {this.props.profile.username}!</h3>
+        {/* <h3>Hello, {this.props.profile.username}!</h3> */}
         <h4>Welcome to TASKsubTASK</h4>
       </div>
     );
