@@ -22,7 +22,7 @@ class Dashboard extends React.Component {
     return (
       <div className='dashboard'>
         {/* <h3>Hello, {this.props.profile.username}!</h3> */}
-        <h4>Welcome to TASKsubTASK</h4>
+        <h4>Welcome to TASKsubtask</h4>
       </div>
     );
   }

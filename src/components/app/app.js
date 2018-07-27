@@ -19,15 +19,16 @@ export default class App extends Component {
       <div>
           <Helmet>
             <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-            <meta property="og:title" content="TASKsubTASK" />
+            <meta property="og:title" content="TASKsubtask" />
             <meta property="og:type" content="website" />
             {/* <meta property="og:url" content="" /> */}
             {/* <meta property="og:image" content="../../assets/site-preview.png" /> */}
           </Helmet>
           <Header/>
           <Route path='*' component={AuthRedirect}/>
+          <Route exact path='/' component={Landing}/>
           <Route exact path={ROUTES.LANDING} component={Landing}/>
-          <Route exact path='/dashboard' component={Dashboard}/>
+          <Route exact path={ROUTES.DASHBOARD} component={Dashboard}/>
           <Footer/>
         </div>
       </BrowserRouter>
