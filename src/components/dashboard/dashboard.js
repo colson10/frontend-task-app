@@ -5,6 +5,7 @@ import * as profileActions from '../../actions/profile';
 import autobind from '../../utils/auto-bind';
 
 import './dashboard.scss';
+import TaskForm from '../task-form/task-form';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -23,6 +24,9 @@ class Dashboard extends React.Component {
       <div className='dashboard'>
         {/* <h3>Hello, {this.props.profile.username}!</h3> */}
         <h4>Welcome to TASKsubtask</h4>
+        <div>
+          <TaskForm onComplete={this.props.pCreateTask}/>
+        </div>
       </div>
     );
   }
@@ -32,6 +36,7 @@ Dashboard.propTypes = {
   profile: PropTypes.object,
   loggedIn: PropTypes.bool,
   pFetchUserProfile: PropTypes.func,
+  pCreateTask: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -41,6 +46,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   pFetchUserProfile: () => dispatch(profileActions.profileFetchRequest()),
+  // pCreateTask 
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
