@@ -26,7 +26,7 @@ export default class App extends Component {
           </Helmet>
           <Header/>
           <Route path='*' component={AuthRedirect}/>
-          <Route exact path='/' component={Landing}/>
+          {/* <Route exact path='/' component={Landing}/> */}
           <Route exact path={ROUTES.LANDING} component={Landing}/>
           <Route exact path={ROUTES.DASHBOARD} component={Dashboard}/>
           <Footer/>

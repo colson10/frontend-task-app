@@ -11,7 +11,7 @@ const defaultState = {
 class TaskForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.props.task || defaultState;
+    this.state = defaultState;
     autoBind.call(this, TaskForm);
   }
 
@@ -22,7 +22,8 @@ class TaskForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.setState(this.props.task ? this.state : defaultState);
+    console.log(this.state, 'this is the state in the handlesubmit');
+    // this.setState(this.props.task ? this.state : defaultState);
     return this.props.onComplete(this.state);
   }
 
