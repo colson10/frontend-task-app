@@ -8,14 +8,11 @@ const setProfile = profile => ({
 });
 
 const profileFetchRequest = () => (store) => {
-  console.log('hello');
   const { token } = store.getState();
-  console.log(token, API_URL);
   return superagent.get(`${API_URL}/profiles/me`)
     .set('Authorization', `Bearer ${token}`)
     .set('Content-Type', 'application/json')
     .then((response) => {
-      console.log(response.body, 'this is the response body');
       return store.dispatch(setProfile(response.body));
     });
 };

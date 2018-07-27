@@ -9,13 +9,10 @@ let destinationRoute = null;
 
 class Landing extends React.Component {
   componentDidMount() {
-    console.log('component did mount on landing');
     if (this.props.loggedIn) {
-      console.log('loggedIn true');
       redirect = true;
       destinationRoute = '/dashboard';
       this.props.history.push(routes.DASHBOARD);
-      console.log(redirect, destinationRoute);
     }
   }
 

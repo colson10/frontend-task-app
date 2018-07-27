@@ -1,7 +1,6 @@
 const D23_001 = 'Profile is required';
 
 const validateProfile = (profile) => {
-  console.log(profile, 'this is the profile');
   if (!profile) throw new Error(D23_001);
 };
 
