@@ -21,7 +21,7 @@ class Landing extends React.Component {
       <div>
         <div>
           <h2 className='hero-text'>
-          TASKsubtask 
+          LISTsublist 
           </h2>
         </div>
         <div>

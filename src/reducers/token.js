@@ -1,6 +1,6 @@
 import { fetchCookie } from '../utils/cookie';
 
-const token = fetchCookie('TASKsubtask');
+const token = fetchCookie('LISTsublist');
 const initialState = token || null;
 
 export default (state = initialState, { type, payload }) => {

@@ -1,0 +1,29 @@
+@import '../../style/vars';
+
+.dashboard {
+  margin: 0, 10px;
+}
+
+.lists-sidebar {
+  width: 33%;
+  min-width: 300px;
+  float: left;
+  clear: both;
+}
+
+.tasks-list {
+  max-width: 75%;
+  display: inline-block;
+}
+
+.list-in-list {
+  border: 2px solid rgb(156, 156, 156);
+  border-radius: 5px;
+  color: rgb(73, 73, 73);
+  background-color: rgb(231, 231, 231);
+  margin-bottom: 5px;
+}
+
+.list-in-list:hover {
+  background-color: rgb(255, 255, 255);
+}

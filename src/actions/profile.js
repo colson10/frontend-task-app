@@ -13,6 +13,7 @@ const profileFetchRequest = () => (store) => {
     .set('Authorization', `Bearer ${token}`)
     .set('Content-Type', 'application/json')
     .then((response) => {
+      console.log(response.body, 'this is the response');
       return store.dispatch(setProfile(response.body));
     });
 };
