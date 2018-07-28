@@ -19,7 +19,7 @@ export default class App extends Component {
       <div>
           <Helmet>
             <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-            <meta property="og:title" content="TASKsubtask" />
+            <meta property="og:title" content="LISTsublist" />
             <meta property="og:type" content="website" />
             {/* <meta property="og:url" content="" /> */}
             {/* <meta property="og:image" content="../../assets/site-preview.png" /> */}

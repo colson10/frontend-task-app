@@ -8,11 +8,11 @@ const defaultState = {
   time: 30,
 };
 
-class TaskForm extends React.Component {
+class ListForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = defaultState;
-    autoBind.call(this, TaskForm);
+    autoBind.call(this, ListForm);
   }
 
   handleChange(event) {
@@ -23,26 +23,26 @@ class TaskForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     console.log(this.state, 'this is the state in the handlesubmit');
-    // this.setState(this.props.task ? this.state : defaultState);
+    // this.setState(this.props.list ? this.state : defaultState);
     return this.props.onComplete(this.state);
   }
 
   render() {
-    const buttonText = this.props.task ? 'Update Task' : 'Create New Task';
+    const buttonText = this.props.list ? 'Update List' : 'Create New List';
     return (
-      <div className='task-form-container'>
-        <form className='task-form' onSubmit={this.handleSubmit}>
+      <div className='list-form-container'>
+        <form className='list-form' onSubmit={this.handleSubmit}>
         <input
           type='text'
           name='title'
-          placeholder='Task Title'
+          placeholder='List Title'
           value={this.state.title}
           onChange={this.handleChange}
           />
           <input
           type='text'
           name='details'
-          placeholder='task details'
+          placeholder='list details'
           value={this.state.details}
           onChange={this.handleChange}
           />
@@ -61,9 +61,9 @@ class TaskForm extends React.Component {
   }
 }
 
-TaskForm.propTypes = {
-  task: PropTypes.object,
+ListForm.propTypes = {
+  list: PropTypes.object,
   onComplete: PropTypes.func,
 };
 
-export default TaskForm;
+export default ListForm;
