@@ -28,7 +28,6 @@ class Dashboard extends React.Component {
     return (
       <div className='dashboard'>
         {/* <h3>Hello, {this.props.profile.username}!</h3> */}
-        <h4>Welcome to LISTsublist</h4>
         <div className='lists-sidebar'>
           <div className='lists-lists'>
           <h2>{ this.props.profile && this.props.profile.username }'s Lists</h2>
