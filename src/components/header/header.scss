@@ -4,3 +4,26 @@ header * {
   background-color: rgb(34, 248, 212);
   color: $off-white;
 }
+
+.topnav {
+  text-align: left;
+}
+
+.home-link {
+  display: inline-block;
+  // text-align: left;
+  height: 100%;
+  width: 33.33%
+}
+
+.link {
+  height: 100%;
+  vertical-align: middle;
+  margin-left: 10px;
+}
+
+.welcome {
+  display: inline-block;
+  width: 33.33%;
+  text-align: center;
+}

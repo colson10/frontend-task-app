@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
 import ROUTES from '../../routes';
-
-// -------------------------------------------------------------------------------------------------
-// SVG IMPORTS
-// -------------------------------------------------------------------------------------------------
-
 import './header.scss';
 
 export default class Header extends Component {
@@ -14,7 +8,13 @@ export default class Header extends Component {
     return (
       <header>
         <nav className='topnav'>
-        <Link to={ROUTES.LANDING} >Home</Link>
+        
+        <div className='home-link'>
+          <div className='link'>
+            <Link to={ROUTES.LANDING} >Home</Link>
+          </div>
+        </div>
+        <h4 className='welcome'>Welcome to LISTsublist</h4>
         </nav>
       </header>
     );
