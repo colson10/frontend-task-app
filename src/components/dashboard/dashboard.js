@@ -9,14 +9,13 @@ import autobind from '../../utils/auto-bind';
 import './dashboard.scss';
 import ListForm from '../list-form/list-form';
 import ListItem from '../list-item/list-item';
-
-const defaultState = {};
+import TaskForm from '../task-form/task-form';
 
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedList: defaultState,
+      selectedList: {},
     };
     autobind.call(this, Dashboard);
   }
@@ -30,9 +29,9 @@ class Dashboard extends React.Component {
     }
   }
 
-  handleListSelect() {
-    this.setState({ selectedlist: this.list });
-    this.props.pFetchTasks(this.state.selectedlist);
+  handleListSelect(list) {
+    this.setState({ selectedList: list });
+    this.props.pFetchTasks(list._id);
   }
 
   render() {
@@ -46,7 +45,9 @@ class Dashboard extends React.Component {
             { lists.length > 0 
               && lists.map((list) => {
                 return (
-                  <ListItem onClick={this.props.handleListSelect} list={list} key={list._id}/>
+                  <div onClick={() => this.handleListSelect(list)} className='list-item-div' key={list._id}>
+                    <ListItem list={list} key={list._id}/>
+                  </div>
                 );
               })
             }
@@ -58,6 +59,7 @@ class Dashboard extends React.Component {
         <div className='tasks-list'>
           <h3>Add a list to this list</h3>
           <p>This is where a list of lists will go.</p>
+          <p>Selected List: {this.state.selectedList.title}</p>
           { tasks.length > 0 
               && tasks.map((task) => {
                 return (
@@ -67,6 +69,7 @@ class Dashboard extends React.Component {
                 );
               })
             }
+            <TaskForm onComplete={this.props.pCreateTask} list={this.state.selectedList} />
         </div>
       </div>
     );
@@ -81,9 +84,8 @@ Dashboard.propTypes = {
   pFetchUserProfile: PropTypes.func,
   pCreateList: PropTypes.func,
   pFetchUserLists: PropTypes.func,
-  selectedList: PropTypes.object,
-  handleListSelect: PropTypes.func,
   pFetchTasks: PropTypes.func,
+  pCreateTask: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -98,6 +100,7 @@ const mapDispatchToProps = dispatch => ({
   pCreateList: list => dispatch(listActions.listCreateRequest(list)), 
   pFetchUserLists: () => dispatch(listActions.fetchAllLists()),
   pFetchTasks: selectedList => dispatch(taskActions.fetchAllTasks(selectedList)),
+  pCreateTask: (task, list) => dispatch(taskActions.taskCreateRequest(task, list)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
