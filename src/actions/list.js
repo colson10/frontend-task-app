@@ -25,7 +25,6 @@ const listCreateRequest = list => (store) => {
 
 const fetchAllLists = () => (store) => {
   const { token, profile } = store.getState();
-  console.log(profile._id, 'this is the profile in the async function');
   return superagent.get(`${API_URL}/lists/${profile._id}`)
     .set('Authorization', `Bearer ${token}`)
     .set('Content-Type', 'application/json')
