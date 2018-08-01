@@ -1,6 +1,5 @@
 import superagent from 'superagent';
-
-const API_URL = 'http://localhost:3000';
+import { API_URL } from '../routes';
 
 const setProfile = profile => ({
   type: 'CLIENT_PROFILE_SET',
@@ -9,6 +8,7 @@ const setProfile = profile => ({
 
 const profileFetchRequest = () => (store) => {
   const { token } = store.getState();
+  console.log(API_URL);
   return superagent.get(`${API_URL}/profiles/me`)
     .set('Authorization', `Bearer ${token}`)
     .set('Content-Type', 'application/json')
