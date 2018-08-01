@@ -1,6 +1,5 @@
 import superagent from 'superagent';
-
-const API_URL = 'http://localhost:3000';
+import { API_URL } from '../routes';
 
 const setTask = task => ({
   type: 'TASK_SET',

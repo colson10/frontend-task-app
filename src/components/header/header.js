@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import ROUTES from '../../routes';
+import { ROUTES } from '../../routes';
 import './header.scss';
 
 export default class Header extends Component {

@@ -3,4 +3,7 @@ const ROUTES = {
   DASHBOARD: '/dashboard',
 };
 
-export default ROUTES;
+// const API_URL = 'http://localhost:3000';
+const API_URL = 'http://listsublist.live';
+
+export { ROUTES, API_URL };

@@ -9,7 +9,7 @@ import Landing from '../landing/landing';
 import Dashboard from '../dashboard/dashboard';
 import Footer from '../footer/footer';
 
-import ROUTES from '../../routes';
+import { ROUTES } from '../../routes';
 import '../../style/main.scss';
 
 export default class App extends Component {
