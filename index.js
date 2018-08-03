@@ -8,6 +8,7 @@ const app = express();
 app.use(express.static(`${__dirname}/build`));
 
 app.listen(process.env.PORT, () => {
+  console.log(__dirname, 'this is the dirname');
   console.log(`SERVER UP on ${process.env.PORT}`);
 });
 
