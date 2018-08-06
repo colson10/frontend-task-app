@@ -9,7 +9,7 @@ import autobind from '../../utils/auto-bind';
 import './dashboard.scss';
 import ListForm from '../list-form/list-form';
 import ListItem from '../list-item/list-item';
-import TaskForm from '../task-form/task-form';
+// import TaskForm from '../task-form/task-form';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -35,41 +35,26 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    const { lists, tasks } = this.props;
+    const { lists } = this.props;
     return (
       <div className='dashboard'>
         {/* <h3>Hello, {this.props.profile.username}!</h3> */}
         <div className='lists-sidebar'>
+        <div className='list-form-div'>
+            <ListForm onComplete={this.props.pCreateList}/>
+          </div>
           <div className='lists-lists'>
           <h2>{ this.props.profile && this.props.profile.username }'s Lists</h2>
             { lists.length > 0 
               && lists.map((list) => {
                 return (
                   <div onClick={() => this.handleListSelect(list)} className='list-item-div' key={list._id}>
-                    <ListItem list={list} key={list._id}/>
+                    <ListItem list={list} key={list._id} selectedList={this.state.selectedList}/>
                   </div>
                 );
               })
             }
           </div>
-          <div className='list-form-div'>
-            <ListForm onComplete={this.props.pCreateList}/>
-          </div>
-        </div>
-        <div className='tasks-list'>
-          <h3>Add a list to this list</h3>
-          <p>This is where a list of lists will go.</p>
-          <p>Selected List: {this.state.selectedList.title}</p>
-          { tasks.length > 0 
-              && tasks.map((task) => {
-                return (
-                  <div list={task} key={task._id}>
-                    <h2>{task.title} | {task.details}</h2>
-                  </div>
-                );
-              })
-            }
-            <TaskForm onComplete={this.props.pCreateTask} list={this.state.selectedList} />
         </div>
       </div>
     );
