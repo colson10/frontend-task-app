@@ -5,7 +5,6 @@ import autoBind from '../../utils/auto-bind';
 const defaultState = {
   title: '',
   details: '',
-  time: 30,
 };
 
 class ListForm extends React.Component {
@@ -43,14 +42,6 @@ class ListForm extends React.Component {
           name='details'
           placeholder='list details'
           value={this.state.details}
-          onChange={this.handleChange}
-          />
-
-          <input
-          type='number'
-          name='time'
-          placeholder='30 minutes'
-          value={this.state.time}
           onChange={this.handleChange}
           />
           <button type='submit'>{buttonText}</button>

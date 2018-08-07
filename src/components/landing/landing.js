@@ -23,7 +23,7 @@ class Landing extends React.Component {
       <div>
         <div>
           <h2 className='hero-text'>
-          LISTsublist 
+          TimeBoxed 
           </h2>
         </div>
         <div>

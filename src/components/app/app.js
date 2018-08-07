@@ -21,6 +21,7 @@ export default class App extends Component {
             <meta name='viewport' content='width=device-width, initial-scale=1.0' />
             <meta property="og:title" content="LISTsublist" />
             <meta property="og:type" content="website" />
+            <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
             {/* <meta property="og:url" content="" /> */}
             {/* <meta property="og:image" content="../../assets/site-preview.png" /> */}
           </Helmet>
@@ -29,7 +30,7 @@ export default class App extends Component {
           {/* <Route exact path='/' component={Landing}/> */}
           <Route exact path={ROUTES.LANDING} component={Landing}/>
           <Route exact path={ROUTES.DASHBOARD} component={Dashboard}/>
-          <Footer/>
+          {/* <Footer/> */}
         </div>
       </BrowserRouter>
     );

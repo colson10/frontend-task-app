@@ -38,13 +38,12 @@ class Dashboard extends React.Component {
     const { lists } = this.props;
     return (
       <div className='dashboard'>
-        {/* <h3>Hello, {this.props.profile.username}!</h3> */}
         <div className='lists-sidebar'>
         <div className='list-form-div'>
             <ListForm onComplete={this.props.pCreateList}/>
           </div>
           <div className='lists-lists'>
-          <h2>{ this.props.profile && this.props.profile.username }'s Lists</h2>
+          <h2>{this.props.profile && 'My Inbox'}</h2>
             { lists.length > 0 
               && lists.map((list) => {
                 return (

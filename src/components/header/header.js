@@ -14,7 +14,7 @@ export default class Header extends Component {
             <Link to={ROUTES.LANDING} >Home</Link>
           </div>
         </div>
-        <h4 className='welcome'>Welcome to LISTsublist</h4>
+        <h4 className='welcome'>TimeBoxed</h4>
         </nav>
       </header>
     );
