@@ -6,6 +6,11 @@ const setTask = task => ({
   payload: task,
 });
 
+const updateTask = task => ({
+  type: 'TASK_UPDATE',
+  payload: task,
+});
+
 const getTasks = tasks => ({
   type: 'TASKS_GET',
   payload: tasks,
@@ -22,14 +27,14 @@ const taskCreateRequest = (task, list) => (store) => {
     });
 };
 
-const taskUpdateRequest = (task, list) => (store) => {
-  const { token, profile } = store.getState();
-  return superagent.post(`${API_URL}/tasks/${task._id}`)
+const taskUpdateStatusRequest = (task, value) => (store) => {
+  const { token } = store.getState();
+  return superagent.put(`${API_URL}/task/${task}`)
     .set('Authorization', `Bearer ${token}`)
     .set('Content-Type', 'application/json')
-    .send({ ...task, list, profile: profile._id })
+    .send({ done: value })
     .then((response) => {
-      return store.dispatch(setTask(response.body));
+      return store.dispatch(updateTask(response.body));
     });
 };
 
@@ -46,7 +51,8 @@ const fetchAllTasks = list => (store) => {
 export { 
   setTask, 
   getTasks, 
+  updateTask,
   taskCreateRequest, 
-  taskUpdateRequest,
+  taskUpdateStatusRequest,
   fetchAllTasks,
 };

@@ -39,9 +39,9 @@ class ListItem extends React.Component {
     this.setState(state => ({ open: !state.open }));
   };
 
-  handleToggle = value => () => {
-    this.props.pUpdateTask(value);
-  };
+  // handleToggle = (task, value) => {
+  //   this.props.pUpdateTaskStatus(task, value);
+  // };
 
   render() {
     const { 
@@ -71,7 +71,11 @@ class ListItem extends React.Component {
               && tasks.map((task) => {
                 return (
                   <List key={task._id} component="div" disablePadding>
-                    <MIListItem button className={classes.nested}>
+                    <MIListItem 
+                      button 
+                      className={classes.nested} 
+                      // onClick={this.handleToggle(task._id, !task.done)}
+                    >
                       <ListItemIcon>
                       <Checkbox
                         checked={task.done}
@@ -124,7 +128,7 @@ ListItem.propTypes = {
   tasks: PropTypes.array,
   selectedList: PropTypes.object,
   classes: PropTypes.object,
-  pUpdateTask: PropTypes.func,
+  pUpdateTaskStatus: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -134,7 +138,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   pCreateTask: (task, list) => dispatch(taskActions.taskCreateRequest(task, list)),
-  pUpdateTask: task => dispatch(taskActions.taskUpdateRequest(task)),
+  pUpdateTaskStatus: task => dispatch(taskActions.taskUpdateStatusRequest(task)),
 });
 
 export default compose(
