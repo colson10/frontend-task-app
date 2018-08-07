@@ -62,6 +62,7 @@
     "html-webpack-exclude-empty-assets-plugin": "^0.1.1",
     "react-favicon": "0.0.14",
     "react-helmet": "^5.2.0",
+    "recompose": "^0.28.2",
     "superagent": "^3.8.3"
   }
 }

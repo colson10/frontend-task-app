@@ -38,13 +38,13 @@ class TaskForm extends React.Component {
           value={this.state.title}
           onChange={this.handleChange}
           />
-          <input
+          {/* <input
           type='text'
           name='details'
           placeholder='task details'
           value={this.state.details}
           onChange={this.handleChange}
-          />
+          /> */}
 
           <input
           type='number'
