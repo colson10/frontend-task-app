@@ -22,6 +22,17 @@ const taskCreateRequest = (task, list) => (store) => {
     });
 };
 
+const taskUpdateRequest = (task, list) => (store) => {
+  const { token, profile } = store.getState();
+  return superagent.post(`${API_URL}/tasks/${task._id}`)
+    .set('Authorization', `Bearer ${token}`)
+    .set('Content-Type', 'application/json')
+    .send({ ...task, list, profile: profile._id })
+    .then((response) => {
+      return store.dispatch(setTask(response.body));
+    });
+};
+
 const fetchAllTasks = list => (store) => {
   const { token } = store.getState();
   return superagent.get(`${API_URL}/tasks/${list}`)
@@ -36,5 +47,6 @@ export {
   setTask, 
   getTasks, 
   taskCreateRequest, 
+  taskUpdateRequest,
   fetchAllTasks,
 };

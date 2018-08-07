@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
-import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
 import MIListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
+import Checkbox from '@material-ui/core/Checkbox';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
+import FolderIcon from '@material-ui/icons/Folder';
 
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
@@ -30,10 +31,16 @@ const styles = theme => ({
 });
 
 class ListItem extends React.Component {
-  state = { open: false };
+  state = { 
+    open: false,
+  };
 
   handleClick = () => {
     this.setState(state => ({ open: !state.open }));
+  };
+
+  handleToggle = value => () => {
+    this.props.pUpdateTask(value);
   };
 
   render() {
@@ -46,12 +53,11 @@ class ListItem extends React.Component {
     return (
       <div>
         <List
-          component="nav"
-          subheader={<ListSubheader component="div">Nested List Items</ListSubheader>}
+          component="div"
         >
-          <MIListItem button onClick={this.handleClick}>
+          <MIListItem button onClick={this.handleClick} style={{ borderBottom: '1px solid black' }}>
             <ListItemIcon>
-              <InboxIcon />
+              <FolderIcon />
             </ListItemIcon>
             <ListItemText inset primary={ <div key={list._id}>
               <h4>{list.title}</h4>
@@ -65,9 +71,13 @@ class ListItem extends React.Component {
               && tasks.map((task) => {
                 return (
                   <List key={task._id} component="div" disablePadding>
-                    <MIListItem button className={styles.nested}>
+                    <MIListItem button className={classes.nested}>
                       <ListItemIcon>
-                        <StarBorder />
+                      <Checkbox
+                        checked={task.done}
+                        tabIndex={-1}
+                        disableRipple
+                      />
                       </ListItemIcon>
                       <ListItemText inset primary={<div >
                     {task.title} | Time: {task.time}
@@ -114,6 +124,7 @@ ListItem.propTypes = {
   tasks: PropTypes.array,
   selectedList: PropTypes.object,
   classes: PropTypes.object,
+  pUpdateTask: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -123,6 +134,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   pCreateTask: (task, list) => dispatch(taskActions.taskCreateRequest(task, list)),
+  pUpdateTask: task => dispatch(taskActions.taskUpdateRequest(task)),
 });
 
 export default compose(
