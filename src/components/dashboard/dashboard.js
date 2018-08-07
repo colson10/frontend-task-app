@@ -39,11 +39,12 @@ class Dashboard extends React.Component {
     return (
       <div className='dashboard'>
         <div className='lists-sidebar'>
+        <h2>{this.props.profile && 'My Inbox'}</h2>
         <div className='list-form-div'>
             <ListForm onComplete={this.props.pCreateList}/>
           </div>
           <div className='lists-lists'>
-          <h2>{this.props.profile && 'My Inbox'}</h2>
+
             { lists.length > 0 
               && lists.map((list) => {
                 return (
