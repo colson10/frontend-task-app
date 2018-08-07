@@ -9,13 +9,14 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
 import Checkbox from '@material-ui/core/Checkbox';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
+// import InboxIcon from '@material-ui/icons/MoveToInbox';
 import FolderIcon from '@material-ui/icons/Folder';
 
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import StarBorder from '@material-ui/icons/StarBorder';
+// import StarBorder from '@material-ui/icons/StarBorder';
 
+import autoBind from '../../utils/auto-bind';
 import TaskForm from '../task-form/task-form';
 import * as taskActions from '../../actions/task';
 
@@ -31,17 +32,38 @@ const styles = theme => ({
 });
 
 class ListItem extends React.Component {
-  state = { 
-    open: false,
-  };
+  constructor(props) {
+    super(props);
+    this.state = { 
+      open: false,
+      checked: [0],
+    };
+    autoBind.call(this, ListItem);
+  }
 
-  handleClick = () => {
+
+  handleClick() {
     this.setState(state => ({ open: !state.open }));
-  };
+  }
 
-  // handleToggle = (task, value) => {
-  //   this.props.pUpdateTaskStatus(task, value);
-  // };
+  handleToggle(value) {
+    const { checked } = this.state;
+    const currentIndex = checked.indexOf(value);
+    const newChecked = [...checked];
+
+    if (currentIndex === -1) {
+      newChecked.push(value);
+    } else {
+      newChecked.splice(currentIndex, 1);
+    }
+
+    this.setState({
+      checked: newChecked,
+    });
+
+    const done = currentIndex === -1;
+    this.props.pUpdateTaskStatus(value, done);
+  }
 
   render() {
     const { 
@@ -50,6 +72,7 @@ class ListItem extends React.Component {
       selectedList, 
       classes, 
     } = this.props;
+
     return (
       <div>
         <List
@@ -74,13 +97,15 @@ class ListItem extends React.Component {
                     <MIListItem 
                       button 
                       className={classes.nested} 
-                      // onClick={this.handleToggle(task._id, !task.done)}
+                      onClick={() => this.handleToggle(task._id)}
                     >
                       <ListItemIcon>
                       <Checkbox
-                        checked={task.done}
+                        checked={this.state.checked.indexOf(task._id) !== -1}
                         tabIndex={-1}
                         disableRipple
+                        
+                        
                       />
                       </ListItemIcon>
                       <ListItemText inset primary={<div >
@@ -138,7 +163,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   pCreateTask: (task, list) => dispatch(taskActions.taskCreateRequest(task, list)),
-  pUpdateTaskStatus: task => dispatch(taskActions.taskUpdateStatusRequest(task)),
+  pUpdateTaskStatus: (task, value) => dispatch(taskActions.taskUpdateStatusRequest(task, value)),
 });
 
 export default compose(
