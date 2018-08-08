@@ -32,7 +32,7 @@ const taskUpdateStatusRequest = (task, value) => (store) => {
   return superagent.put(`${API_URL}/task/${task}`)
     .set('Authorization', `Bearer ${token}`)
     .set('Content-Type', 'application/json')
-    .send({ done: value })
+    .send(value)
     .then((response) => {
       return store.dispatch(updateTask(response.body));
     });

@@ -1,11 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import CreateNewFolder from '@material-ui/icons/CreateNewFolder';
+import Button from '@material-ui/core/Button';
+
 import autoBind from '../../utils/auto-bind';
+
 
 const defaultState = {
   title: '',
   details: '',
 };
+
+const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: 200,
+  },
+  menu: {
+    width: 200,
+  },
+  button: {
+    margin: theme.spacing.unit,
+  },
+  input: {
+    display: 'none',
+  },
+});
 
 class ListForm extends React.Component {
   constructor(props) {
@@ -15,8 +43,8 @@ class ListForm extends React.Component {
   }
 
   handleChange(event) {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
+    const { id, value } = event.target;
+    this.setState({ [id]: value });
   }
 
   handleSubmit(event) {
@@ -27,9 +55,47 @@ class ListForm extends React.Component {
 
   render() {
     const buttonText = this.props.list ? 'Update List' : 'Create New List';
+    const { classes } = this.props;
+
     return (
       <div className='list-form-container'>
-        <form className='list-form' onSubmit={this.handleSubmit}>
+      <form className={classes.container} noValidate autoComplete="off" onSubmit={this.handleSubmit}>
+      
+        <TextField
+          id="title"
+          label="Create New List"
+          className={classes.textField}
+          value={this.state.title}
+          onChange={this.handleChange}
+          margin="normal"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <CreateNewFolder />
+              </InputAdornment>
+            ),
+          }}
+        />
+        {/* <TextField
+          id="details"
+          label="Details"
+          className={classes.textField}
+          value={this.state.details}
+          onChange={this.handleChange}
+          margin="normal"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <Details />
+              </InputAdornment>
+            ),
+          }}
+        /> */}
+        <Button size="small" variant="outlined" className={classes.button}>
+          {buttonText}
+        </Button>      
+      </form>
+        {/* <form className='list-form' onSubmit={this.handleSubmit}>
         <input
           type='text'
           name='title'
@@ -45,7 +111,7 @@ class ListForm extends React.Component {
           onChange={this.handleChange}
           />
           <button type='submit'>{buttonText}</button>
-        </form>
+        </form> */}
       </div>
     );
   }
@@ -54,6 +120,7 @@ class ListForm extends React.Component {
 ListForm.propTypes = {
   list: PropTypes.object,
   onComplete: PropTypes.func,
+  classes: PropTypes.object,
 };
 
-export default ListForm;
+export default withStyles(styles)(ListForm);
