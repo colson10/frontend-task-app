@@ -27,7 +27,7 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.paper,
   },
   nested: {
-    paddingLeft: theme.spacing.unit * 4,
+    paddingLeft: theme.spacing.unit * 2,
   },
 });
 
@@ -104,8 +104,6 @@ class ListItem extends React.Component {
                         checked={this.state.checked.indexOf(task._id) !== -1}
                         tabIndex={-1}
                         disableRipple
-                        
-                        
                       />
                       </ListItemIcon>
                       <ListItemText inset primary={<div >
