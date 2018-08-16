@@ -40,14 +40,15 @@ class TaskForm extends React.Component {
   }
 
   handleChange(event) {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
+    const { id, value } = event.target;
+    this.setState({ [id]: value });
   }
 
   handleSubmit(event) {
     event.preventDefault();
     // this.setState(this.props.task ? this.state : defaultState);
-    return this.props.onComplete(this.state, this.props.list._id);
+    this.props.onComplete(this.state, this.props.list._id);
+    this.setState({ ...defaultState });
   }
 
   render() {
@@ -66,6 +67,7 @@ class TaskForm extends React.Component {
           margin="normal"
         />
         <Button 
+          onClick={this.handleSubmit}
           size="small" 
           variant="outlined" 
           className={classes.button}

@@ -7,7 +7,7 @@ import { ROUTES, API_URL } from '../../routes';
 let redirect = false;
 let destinationRoute = null;
 
-const googleLink = `https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=${API_URL}/oauth/google&scope=openid%20email%20profile&client_id=391898223520-nodlikiik4v7118fhe3lofn9n3irl3kd.apps.googleusercontent.com&prompt=consent&response_type=code`;
+const googleLink = `${API_URL}/oauth/google`;
 
 class Landing extends React.Component {
   componentDidMount() {
