@@ -35,6 +35,7 @@ googleRouter.get('/oauth/google', (request, response) => {
           response.redirect(process.env.CLIENT_URL);
         }
         const accessToken = tokenResponse.body.access_token;
+        user.googleToken = accessToken;
         return superagent.get(OPEN_ID_URL)
           .set('Authorization', `Bearer ${accessToken}`);
       })
@@ -43,15 +44,21 @@ googleRouter.get('/oauth/google', (request, response) => {
         user.username = openIDResponse.body.name;
         user.email = openIDResponse.body.email;
         console.log(user);
-        return response
-          .cookie('LISTsublist', user.email, { 
-            secure: false, 
-            maxAge: 900000, 
-            path: '/', 
-            signed: false, 
-            httpOnly: false, 
-          })
-          .redirect(process.env.CLIENT_URL);
+        console.log(`${process.env.BACKEND_API_URL}/google`, 'api url');
+        return superagent.post(`${process.env.BACKEND_API_URL}/google`)
+          .send(user)
+          .then((token) => {
+            console.log(token.body);
+            return response
+              .cookie('LISTsublist', token.body, { 
+                secure: false, 
+                maxAge: 900000, 
+                path: '/', 
+                signed: false, 
+                httpOnly: false, 
+              })
+              .redirect(process.env.CLIENT_URL);
+          });
       })
       .catch(() => {
         console.log('error');
