@@ -48,7 +48,7 @@ googleRouter.get('/oauth/google', (request, response) => {
         return superagent.post(`${process.env.BACKEND_API_URL}/google`)
           .send(user)
           .then((token) => {
-            console.log(token);
+            console.log(token, 'this is the whole token, and after is the token.body', token.body);
             return response
               .cookie('LISTsublist', token, { 
                 secure: false, 
