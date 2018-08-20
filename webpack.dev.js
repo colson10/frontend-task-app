@@ -15,7 +15,7 @@ webpackDevConfig.devServer = {
   contentBase: './build',
   open: true,
   hot: true,
-  historyApiFallback: true,
+  historyApiFallback: false,
 };
 
 webpackDevConfig.plugins = [
