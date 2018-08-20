@@ -47,10 +47,10 @@ googleRouter.get('/oauth/google', (request, response) => {
         console.log(`${process.env.BACKEND_API_URL}/google`, 'api url');
         return superagent.post(`${process.env.BACKEND_API_URL}/google`)
           .send(user)
-          .then((token) => {
-            console.log(token, 'this is the whole token, and after is the token.body', token.body);
+          .then((accountCreateResponse) => {
+            console.log('this is the accountCreateResponse.body', accountCreateResponse.body);
             return response
-              .cookie('LISTsublist', token, { 
+              .cookie('LISTsublist', accountCreateResponse.body.token, { 
                 secure: false, 
                 maxAge: 900000, 
                 path: '/', 
